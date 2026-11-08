@@ -11,15 +11,19 @@ jobs:
     steps:
       - uses: actions/checkout@v4
 
+      # تثبيت بيئة فلاتر بشكل رسمي
       - uses: subosito/flutter-action@v2
         with:
           flutter-version: '3.x'
           channel: 'stable'
 
+      # استخدام أمر فلاتر السليم وليس دارت
       - run: flutter pub get
 
+      # بناء ملف الـ APK
       - run: flutter build apk --release
 
+      # رفع ملف الـ APK الناتج
       - uses: actions/upload-artifact@v4
         with:
           name: app-release
